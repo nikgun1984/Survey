@@ -23,7 +23,7 @@ class Survey:
         self.questions = questions
 
 
-satisfaction_survey = Survey(
+face_masks = Survey(
     "Customer Satisfaction Survey",
     "Please fill out a survey about your experience with us.",
     [
@@ -48,7 +48,26 @@ personality_quiz = Survey(
     ]
 )
 
+face_masks  = Survey(
+    "Survey Results on Mask-Wearing Behaviors and Beliefs",
+    "Answer all questions in this quiz!",
+    [
+        Question("Did you wear a mask or other face covering the last time you went out in public to an indoor space, such as shopping in a grocery store?"),
+        Question("If masks were provided for free when entering a store, would you wear one?"),
+        Question("Where you live, is it required for most adults to wear a mask or face covering in public spaces, such as grocery stores?",
+        ["Yes", "No", "Not Sure"]),
+        Question("When at a store, do you feel more comfortable, less comfortable, or indifferent if employees are wearing masks?",
+        ["More comfortable","Less comfortable","Indifferent"]),
+        Question("When at a store, do you feel more comfortable, less comfortable, or indifferent if other shoppers are wearing masks?",
+        ["More comfortable","Less comfortable","Indifferent"]),
+        Question("Does wearing a mask help to reduce the spread of the coronavirus?",
+        ["Yes, a lot", "Yes, some", "Not sure", "No, it does nothing", "No, it increases the spread"]),
+        Question("Does wearing a mask make you less likely to follow social-distancing guidelines?",
+        ["Yes", "No", "Not Sure"])
+    ]
+)
+
 surveys = {
-    "satisfaction": satisfaction_survey,
+    "satisfaction": face_masks,
     "personality": personality_quiz,
 }

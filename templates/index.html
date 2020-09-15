@@ -1,0 +1,11 @@
+{% extends "base.html"%}
+
+{% block title%} Survey on Face Masks{% endblock%}
+
+{% block content%}
+    <div id="survey">
+        <form action="/questions/0">
+            <button class="main_button" type="submit">Start the Survey <i class="fas fa-angle-double-right"></i></button>
+        </form>
+    </div>
+{% endblock%}
