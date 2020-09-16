@@ -10,7 +10,7 @@
         <form action="/{{survey_name}}/answer/{{num}}" name="form{{num}}" id="form" method="POST">
             {% for choice in quest.choices%}
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="{{num}}" id="{{num}}" checked>
+                <input class="form-check-input" type="radio" name="{{num}}" id="{{num}}" value="{{choice}}">
                 <label class="form-check-label" for="{{num}}">{{choice}}</label>
             </div>
             {% endfor %}
