@@ -15,15 +15,16 @@ class Question:
 class Survey:
     """Questionnaire."""
 
-    def __init__(self, title, instructions, questions):
+    def __init__(self, link, title, instructions, questions):
         """Create questionnaire."""
-
+        self.link = link
         self.title = title
         self.instructions = instructions
         self.questions = questions
 
 
-face_masks = Survey(
+satisfaction_survey = Survey(
+    "satisfaction",
     "Customer Satisfaction Survey",
     "Please fill out a survey about your experience with us.",
     [
@@ -35,6 +36,7 @@ face_masks = Survey(
     ])
 
 personality_quiz = Survey(
+    "personality",
     "Rithm Personality Test",
     "Learn more about yourself with our personality quiz!",
     [
@@ -49,6 +51,7 @@ personality_quiz = Survey(
 )
 
 face_masks  = Survey(
+    "face_masks",
     "Survey Results on Mask-Wearing Behaviors and Beliefs",
     "Answer all questions in this quiz!",
     [
@@ -68,6 +71,7 @@ face_masks  = Survey(
 )
 
 surveys = {
-    "satisfaction": face_masks,
+    "satisfaction": satisfaction_survey,
     "personality": personality_quiz,
+    "face_masks": face_masks
 }

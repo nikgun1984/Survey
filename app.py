@@ -1,39 +1,50 @@
 from flask import Flask, request, redirect, render_template, flash
 from flask_debugtoolbar import DebugToolbarExtension
-from surveys import face_masks
+from surveys import surveys
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "whateverpassword1"
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
-responses = []
-# debug  = DebugToolbarExtension(app)
+responses = {}
+debug  = DebugToolbarExtension(app)
+
 @app.route('/')
 def start_page():
-    return render_template('index.html')
+    surveys_map = surveys
+    return render_template('main.html', surveys_map=surveys_map)
 
-@app.route('/questions/<int:num>')
-def get_question(num):
-    if num < len(responses) or num > len(responses):
+@app.route('/<survey_name>')
+def survey_page(survey_name):
+    survey = surveys[survey_name]
+    return render_template('index.html', survey=survey)
+
+@app.route('/<survey_name>/questions/<int:num>')
+def get_question(survey_name,num):
+    global responses
+    responses.setdefault(survey_name,{}).setdefault('choices',[])
+    if num < len(responses[survey_name]["choices"]) or num > len(responses[survey_name]["choices"]):
         flash("You accessed an invalid question...","error")
-        return redirect(f'/questions/{len(responses)}')
+        return redirect(f'/{{survey_name}}/questions/{len(responses[survey_name]["choices"])}')
     else:
-        if num < len(face_masks.questions):
-            quest = face_masks.questions[num]
-            return render_template('question.html',num=num, quest = quest)
+        if num < len(surveys[survey_name].questions):
+            quest = surveys[survey_name].questions[num]
+            survey = surveys[survey_name]
+            return render_template('question.html',num=num, quest = quest, survey_name=survey_name, survey=survey)
         else:
-            return redirect('/thankyou')
+            flash("Thank you very much for your participation","success")
+            return redirect('/')
 
 
-@app.route('/answer/<int:num>', methods=["POST"])
-def post_question(num):
+@app.route('/<survey_name>/answer/<int:num>', methods=["POST"])
+def post_question(survey_name,num):
     choice = request.form[str(num)]
-    if face_masks.questions[num].allow_text:
+    responses.setdefault(survey_name,{}).setdefault('choices',[]).append(choice)
+    if surveys[survey_name].questions[num].allow_text:
         answer = request.form[f"question{num}"]
-    responses.append(choice)
-    return redirect(f'/questions/{num+1}')
+        responses[survey_name].setdefault('answers',[]).append(answer)
+    else:
+        responses[survey_name].setdefault('answers',[]).append(None)
 
-@app.route('/thankyou')
-def thank_you():
-    return render_template('thanks.html')
+    return redirect(f'/{survey_name}/questions/{num+1}')

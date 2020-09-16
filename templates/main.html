@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+{% block title%} Choose Survey {% endblock %}
+
+{% block content %}
+        <h1 class="display-3 text-center">Welcome to <i class="fas fa-poll"></i> Survey Page</h1>
+        <h3 class="text-center">Choose any survey from the list you would like to participate:</h3>
+        {% for survey in surveys_map.values()%}
+            <div class="row m-5">
+                <div class="col text-center">
+                    <a href="/{{survey.link}}" class="btn btn-outline-dark btn-lg">{{survey.title}} <i class="fas fa-hand-point-right"></i></a>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

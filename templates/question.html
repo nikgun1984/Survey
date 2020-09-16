@@ -3,16 +3,25 @@
 {block title} Question {{num}}{endblock}
 
 {% block content%}
-        <form action="/answer/{{num}}" name="form{{num}}" id="form" method="POST">
-            <p>{{quest.question}}</p>
+<h1 class="display-4 text-center">{{survey.title}}</h1>
+<h3 class="text-center mt-2">{{quest.question}}</h3>
+<div class="d-flex justify-content-center align-items-center container ">
+    <div class="row">
+        <form action="/{{survey_name}}/answer/{{num}}" name="form{{num}}" id="form" method="POST">
             {% for choice in quest.choices%}
-                <input type="radio" id="{{num}}" name="{{num}}">
-                <label for="{{num}}">{{choice}}</label><br>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{num}}" id="{{num}}" checked>
+                <label class="form-check-label" for="{{num}}">{{choice}}</label>
+            </div>
             {% endfor %}
             {% if quest.allow_text%}
-                <textarea name="question{{num}}" id="" cols="30" rows="10"></textarea>
+            <div class="form-group">
+                <textarea name="question{{num}}" id="" cols="25" rows="3" style="font-family:monospace;"></textarea>
+            </div>
             {% endif %}
-            <input type="submit" value="Submit">
+            <input class="btn btn-outline-info btn-lg mt-4" type="submit" value="Submit">
         </form>
-{% endblock %}
+    </div>
+</div>
 
+{% endblock %}

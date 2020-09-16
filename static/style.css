@@ -1,53 +1,38 @@
-:root{
+/* :root{
     font-family: Pandemic;
-}
+} */
 
 body {
-    background-image: url('/static/background.jpg');
+    background-image: url('/static/images/survey.jpg');
     background-size: cover;
-    text-align: center;
+}
+
+.container{
+    margin-top: 2rem;
 }
 
 h1{
-    color: rgb(242, 226, 226);
     font-size: 3rem;
 }
 
-.main_button, input[type=submit]{
-    margin-top: 2rem;
-    padding: 1rem;
-}
 
-button.main_button:hover{
-    background-color: rgba(255,0,0,0.1);
-    border-radius: 5px;
-    color: azure;
-}
-
-input[type=submit]:hover{
-    background-color: rgba(255,0,0,0.1);
-    border-radius: 5px;
-    color: azure;
-}
-
-/* .arrow:hover{
-    color: white;
-} */
-
-@font-face {
-    font-family: Pandemic;
-    src: url('Pandemic.ttf');
+h2.main{
+    display:inline;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
 }
 
 form{
-    font-size: 2rem;
-    color: white;
+    font-size: 1.5rem;
 }
 
-p{
+/* p{
     font-size: 2rem;
     color: white;
-}
+} */
 
 .messages{
     padding: 1rem;
@@ -59,3 +44,13 @@ p{
     background-color: rgba(255, 0, 0, 0.1);
     font-size: 2rem;
 }
+
+.success{
+    color: whitesmoke;
+    background-color: rgba(125, 205, 236, 0.6);
+    font-size: 2rem;
+}
+
+#jumbo {
+    background: rgba(125, 205, 236, 0.3); 
+ }

@@ -3,9 +3,12 @@
 {% block title%} Survey on Face Masks{% endblock%}
 
 {% block content%}
-    <div id="survey">
-        <form action="/questions/0">
-            <button class="main_button" type="submit">Start the Survey <i class="fas fa-angle-double-right"></i></button>
-        </form>
+    <h1 class="display-4 text-center">{{survey.title}}</h1>
+    <div class="row mt-5">
+        <div class="col text-center">
+            <form action="/{{survey.link}}/questions/0">
+                <button class="btn btn-outline-info btn-lg" type="submit">Start the Survey <i class="fas fa-angle-double-right"></i></button>
+            </form>
+        </div>
     </div>
 {% endblock%}
