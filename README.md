@@ -4,5 +4,5 @@ This is a simple Survey Flask App where it will ask the site visitor questions f
 one per screen, moving to the next question when they submit.
 
 <p align="center">
-  <img src="/static/images/sample.png" width="350" title="hover text">
+  <img src="/static/images/sample.png" width="500" title="hover text">
 </p>
